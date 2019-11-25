@@ -14,7 +14,35 @@ android {
         versionName "1.0"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
+//    signingConfigs {
+//        debug {
+//            storeFile file('../apk_signing/iis_yqt.keystore')
+//            storePassword KEYSTORE_PASSWORD
+//            keyAlias "舆情通"
+//            keyPassword KEY_PASSWORD
+//        }
+//        release {
+//            storeFile file('../apk_signing/iis_yqt.keystore')
+//            storePassword KEYSTORE_PASSWORD
+//            keyAlias "舆情通"
+//            keyPassword KEY_PASSWORD
+//        }
+//    }
     buildTypes {
+        debug {
+            // 如果没有提供混淆规则文件，则设置默认的混淆规则文件（SDK/tools/proguard/proguard-android.txt）
+            pseudoLocalesEnabled true
+            //混淆
+            minifyEnabled false
+            //Zipalign优化
+            zipAlignEnabled true
+            // 移除无用的resource文件
+            shrinkResources false
+            //打印log
+            buildConfigField "boolean", "LOG_SHOW", "true"
+            // 显示Log
+            buildConfigField "boolean", "LOG_DEBUG", "true"
+        }
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
